@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:45:29 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/26 17:23:51 by cdana            ###   ########.fr       */
+/*   Updated: 2019/12/27 12:23:00 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,36 @@ int		ft_printf(const char *s, ...)
 			arg.min_width = va_arg(ap, int);
 		if (arg.s_lenght == 1)
 			arg.lenght = va_arg(ap, int);
+	}
+	va_end(ap);
+	return (len);
+}
+
+int		ft_printf(const char *s, ...)
+{
+	va_list		ap;
+	int			len;
+	int			i;
+	int			ret;
+
+	va_start(ap, s);
+	i = 0;
+	len = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] != '%')
+		{
+			write(1, s + i, 1);
+			i++;
+			len++;
+		}
+		if (s[i] == '%')
+		{
+			ret = ft_printarg(s, &i, ap);
+			if (ret == -1)
+				return (-1);
+			len += ret;
+		}
 	}
 	va_end(ap);
 	return (len);
