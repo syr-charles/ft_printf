@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/30 16:46:30 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/26 15:38:39 by cdana            ###   ########.fr       */
+/*   Created: 2019/12/26 15:08:11 by cdana             #+#    #+#             */
+/*   Updated: 2019/12/26 17:27:07 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "ft_printf.h"
 
-typedef struct	s_arg
+int		ft_atoi(const char *s)
 {
-	int 	minus;
-	int 	zero;
-	int 	min_width;
-	int		s_width;
-	int 	prec;
-	int 	lenght;
-	int 	s_lenght;
-	char	type;
-}				t_arg;
+	int		sgn;
+	long	val;
+	int		i;
 
-int		ft_printf(const char *s, ...);
-int		ft_atoi(const char *s);
-#endif
+	i = 0;
+	if (s[i] == '-')
+	{
+		sgn = -1;
+		i++;
+	} else 
+		sgn = 1;
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		val += 10 * val + s[i] - '0';
+		i++;
+	}
+	return (val * sgn);
+}
