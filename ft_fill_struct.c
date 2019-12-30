@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2019/12/27 15:20:53 by cdana            ###   ########.fr       */
+/*   Updated: 2019/12/27 18:54:52 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,18 @@ static int		ft_fill_flags(const char *s, t_arg *arg)
 static int		ft_fill_width(const char *s, t_arg *arg, int i)
 {
 	arg->s_width = 0;
-	arg->min_width = 0;
+	arg->min_width = -1;
 	if (s[i] == '*')
 	{
 		arg->s_width = 1;
 		i++;
 	}
-	if (ft_find(s[i], "0123456789"))
+	else if (ft_find(s[i], "0123456789"))
+	{
 		arg->min_width = ft_atoi(s + i);
-	while (ft_find(s[i], "0123456789"))
-		i++;
+		while (ft_find(s[i], "0123456789"))
+			i++;
+	}
 	return (i);
 }
 
@@ -60,19 +62,23 @@ static int		ft_fill_precision(const char *s, t_arg *arg, int i)
 {
 	arg->prec = 0;
 	arg->s_length = 0;
-	arg->length = 0;
-	if (s[i] != '.')
-		return (i);
-	arg->prec = 1;
-	if (s[i] == '*')
+	arg->length = -1;
+	if (s[i] == '.')
 	{
-		arg->s_length = 1;
+		arg->prec = 1;
 		i++;
+		if (s[i] == '*')
+		{
+			arg->s_length = 1;
+			i++;
+		}
+		else if (ft_find(s[i], "0123456789"))
+		{
+			arg->length = ft_atoi(s + i);
+			while (ft_find(s[i], "0123456789"))
+				i++;
+		}
 	}
-	if (ft_find(s[i], "0123456789"))
-		arg->length = ft_atoi(s + i);
-	while (ft_find(s[i], "0123456789"))
-		i++;
 	return (i);
 }
 
