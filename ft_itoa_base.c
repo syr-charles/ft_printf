@@ -1,35 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/26 15:08:11 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/31 15:49:46 by cdana            ###   ########.fr       */
+/*   Created: 2019/12/30 11:38:38 by cdana             #+#    #+#             */
+/*   Updated: 2019/12/31 16:48:58 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_atoi(const char *s)
+static int	ft_strlen(char *s)
 {
-	int		sgn;
-	long	val;
 	int		i;
 
-	val = 0;
 	i = 0;
-	sgn = 1;
-	if (s[i] == '-')
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int			ft_itoa_base(char *base, long long nb, char **line)
+{
+	long long	x;
+	int			len;
+	int			i;
+
+	if (!base || (len = ft_strlen(base)) < 2 || !line || !(*line))
+		return (-1);
+	i = 0;
+	if (nb < 0)
 	{
-		sgn = -1;
+		(*line)[0] = '-';
+		nb = -nb;
 		i++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
+	x = 1;
+	while (nb / x >= len)
+		x = len * x;
+	while (x > 0)
 	{
-		val = 10 * val + s[i] - '0';
+		(*line)[i] = base[(nb / x) % len];
+		x = x / len;
 		i++;
 	}
-	return (val * sgn);
+	(*line)[i] = 0;
+	return (i);
 }

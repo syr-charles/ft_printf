@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:46:30 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/27 18:32:01 by charles          ###   ########.fr       */
+/*   Updated: 2019/12/31 17:18:43 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//DEBUG
+# include <stdio.h>
 typedef struct	s_arg
 {
 	int 	minus;
@@ -29,16 +31,14 @@ typedef struct	s_arg
 }				t_arg;
 
 int		ft_print_s(t_arg *arg, va_list ap);
-/*
 int		ft_print_p(t_arg *arg, va_list ap);
-int		ft_print_d(t_arg *arg, va_list ap);
-int		ft_print_i(t_arg *arg, va_list ap);
+int		ft_print_di(t_arg *arg, va_list ap);
 int		ft_print_u(t_arg *arg, va_list ap);
 int		ft_print_x(t_arg *arg, va_list ap);
-int		ft_print_X(t_arg *arg, va_list ap);
-*/
+int		ft_print_xx(t_arg *arg, va_list ap);
 int		ft_printf(const char *s, ...);
 int		ft_atoi(const char *s);
+int		ft_itoa_base(char *base, long long nb, char **line);
 int		ft_printarg(const char *s, int *i, va_list ap);
 int		ft_fill_struct(const char *s, t_arg *arg);
 #endif

@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2019/12/27 18:54:52 by cdana            ###   ########.fr       */
+/*   Updated: 2019/12/31 17:28:25 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,12 @@ int     ft_fill_struct(const char *s, t_arg *arg)
     i = ft_fill_flags(s, arg);
     i = ft_fill_width(s, arg, i);
     i = ft_fill_precision(s, arg, i);
+	if (arg->zero == 1 && (arg->minus == 1 || arg->prec == 1))
+		arg->zero = 0;
     if (ft_find(s[i], "cspdiuxX%"))
     {
         arg->type = s[i];
         return (i + 1);
     }
-    return (-1);
+	return (-1);
 }
