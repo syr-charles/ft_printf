@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2020/01/02 14:52:43 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 18:23:48 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,14 @@ static int		ft_fill_precision(const char *s, t_arg *arg, int i)
 			arg->s_length = 1;
 			i++;
 		}
-		else if (ft_find(s[i], "0123456789"))
+		else if (ft_find(s[i], "-0123456789"))
 		{
 			arg->length = ft_atoi(s + i);
-			while (ft_find(s[i], "0123456789"))
+			while (ft_find(s[i], "-0123456789"))
 				i++;
 		}
+		if (arg->prec == 1 && arg->length < 0)
+			arg->prec = 0;
 	}
 	return (i);
 }

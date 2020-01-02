@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 16:09:49 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/02 14:55:29 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 18:29:12 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_size(int nb, t_arg *arg)
 {
 	int		i;
 	int		x;
-	int		n;
+	long	n;
 
 	n = nb;
 	if (n < 0)

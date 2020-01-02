@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 18:00:45 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/02 14:54:23 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 18:44:07 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			ft_print_s(t_arg *arg, va_list ap)
 	if (arg->s_length == 1)
 		arg->length = va_arg(ap, int);
 	if (!(ctnt = va_arg(ap, char*)))
-		return (-1);
+		ctnt = "(null)";
 	if (arg->minus == 1)
 		return (ft_put(arg, ctnt) + ft_blank(c, arg, ctnt));
 	return (ft_blank(c, arg, ctnt) + ft_put(arg, ctnt));

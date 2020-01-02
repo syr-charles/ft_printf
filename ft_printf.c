@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:45:29 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/02 15:05:41 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 15:14:48 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int		ft_putchar_and_add(char c, int *i, int *len)
 	write(1, &c, 1);
 	(*i)++;
 	(*len)++;
+	return (1);
 }
 
 int				ft_printf(const char *s, ...)
