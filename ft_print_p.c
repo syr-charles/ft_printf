@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 16:51:15 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/31 17:09:27 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 14:55:07 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,12 @@ static int	ft_put(long long nb, char **line)
 	return (len);
 }
 
-
 int			ft_print_p(t_arg *arg, va_list ap)
 {
 	long long		nb;
 	char			*line;
 	int				ret;
 	int				sp;
-
 
 	if (arg->s_width == 1)
 		arg->min_width = va_arg(ap, int);

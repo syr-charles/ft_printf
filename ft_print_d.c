@@ -6,12 +6,11 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 16:09:49 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/31 17:26:21 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 14:55:29 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#define abs(x) (x < 0) ? -x : x
 
 static int	ft_blank(t_arg *arg, int nb)
 {

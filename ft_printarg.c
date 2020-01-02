@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:02:17 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/31 17:18:32 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/02 14:56:10 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_print_mod(t_arg *arg)
 	if (arg->minus > 0 || arg->zero > 0 || arg->min_width > 0
 			|| arg->s_width > 0 || arg->prec > 0 || arg->length > 0
 			|| arg->s_length > 0)
-		return (-1);	
+		return (-1);
 	ft_putchar('%');
 	return (1);
 }
@@ -40,7 +40,7 @@ static int	ft_print_c(t_arg *arg, va_list ap)
 int			ft_printarg(const char *s, int *i, va_list ap)
 {
 	t_arg	arg;
-	int 	ret;
+	int		ret;
 
 	if ((ret = ft_fill_struct(s + *i, &arg)) < 0)
 		return (-1);
