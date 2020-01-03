@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 18:00:45 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/02 18:44:07 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:18:22 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int			ft_print_s(t_arg *arg, va_list ap)
 		c = '0';
 	if (arg->s_width == 1)
 		arg->min_width = va_arg(ap, int);
+	if (arg->s_width == 1 && arg->min_width < 0)
+	{
+		arg->min_width = -arg->min_width;
+		arg->minus = 1;
+	}
 	if (arg->s_length == 1)
 		arg->length = va_arg(ap, int);
 	if (!(ctnt = va_arg(ap, char*)))

@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2020/01/02 18:23:48 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:23:46 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,18 @@ static int		ft_fill_flags(const char *s, t_arg *arg)
 	return (i);
 }
 
-static int		ft_fill_width(const char *s, t_arg *arg, int i)
+static int		ft_fill_width(const char *s, t_arg *arg, int i, va_list ap)
 {
 	arg->s_width = 0;
 	arg->min_width = -1;
 	if (s[i] == '*')
 	{
-		arg->s_width = 1;
+		arg->min_width = va_arg(ap, int);
+		if (arg->min_width < 0)
+		{
+			arg->min_width = -arg->min_width;
+			arg->minus = 1;
+		}
 		i++;
 	}
 	else if (ft_find(s[i], "0123456789"))
@@ -78,18 +83,16 @@ static int		ft_fill_precision(const char *s, t_arg *arg, int i)
 			while (ft_find(s[i], "-0123456789"))
 				i++;
 		}
-		if (arg->prec == 1 && arg->length < 0)
-			arg->prec = 0;
 	}
 	return (i);
 }
 
-int				ft_fill_struct(const char *s, t_arg *arg)
+int				ft_fill_struct(const char *s, t_arg *arg, va_list ap)
 {
 	int		i;
 
 	i = ft_fill_flags(s, arg);
-	i = ft_fill_width(s, arg, i);
+	i = ft_fill_width(s, arg, i, ap);
 	i = ft_fill_precision(s, arg, i);
 	if (arg->zero == 1 && (arg->minus == 1 || arg->prec == 1))
 		arg->zero = 0;

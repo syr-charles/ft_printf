@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:46:30 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/02 15:04:09 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:20:29 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int				ft_printf(const char *s, ...);
 int				ft_atoi(const char *s);
 int				ft_itoa_base(char *base, long long nb, char **line);
 int				ft_printarg(const char *s, int *i, va_list ap);
-int				ft_fill_struct(const char *s, t_arg *arg);
+int				ft_fill_struct(const char *s, t_arg *arg, va_list ap);
 #endif
