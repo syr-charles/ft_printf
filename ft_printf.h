@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/30 16:46:30 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/03 12:20:29 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:29:23 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct	s_arg
 	int			minus;
 	int			zero;
 	int			min_width;
-	int			s_width;
 	int			prec;
 	int			length;
 	int			s_length;

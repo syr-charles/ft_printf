@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2020/01/03 12:23:46 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:29:50 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static int		ft_fill_flags(const char *s, t_arg *arg)
 
 static int		ft_fill_width(const char *s, t_arg *arg, int i, va_list ap)
 {
-	arg->s_width = 0;
 	arg->min_width = -1;
 	if (s[i] == '*')
 	{

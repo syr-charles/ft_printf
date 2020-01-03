@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:02:17 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/03 12:20:11 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/03 12:33:22 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ static int	ft_putchar(char c)
 	return (1);
 }
 
-static int	ft_print_mod(t_arg *arg, va_list ap)
+static int	ft_print_mod(t_arg *arg)
 {
 	char	c;
 
 	c = ' ';
-	if (arg->s_width == 1)
-		arg->min_width = va_arg(ap, int);
 	if (arg->prec == 1)
 		return (-1);
 	if (arg->minus == 1)
@@ -53,8 +51,6 @@ static int	ft_print_c(t_arg *arg, va_list ap)
 	char	ch;
 
 	c = ' ';
-	if (arg->s_width == 1)
-		arg->min_width = va_arg(ap, int);
 	if (arg->prec == 1)
 		return (-1);
 	ch = va_arg(ap, int);
@@ -88,6 +84,6 @@ int			ft_printarg(const char *s, int *i, va_list ap)
 	if (arg.type == 'X')
 		return (ft_print_xx(&arg, ap));
 	if (arg.type == '%')
-		return (ft_print_mod(&arg, ap));
+		return (ft_print_mod(&arg));
 	return (-1);
 }
