@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 11:38:38 by cdana             #+#    #+#             */
-/*   Updated: 2019/12/31 16:48:58 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/07 12:09:17 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,15 @@ static int	ft_strlen(char *s)
 	return (i);
 }
 
-int			ft_itoa_base(char *base, long long nb, char **line)
+int			ft_itoa_base(char *base, unsigned long nb, char **line)
 {
-	long long	x;
-	int			len;
-	int			i;
+	unsigned long	x;
+	unsigned long	len;
+	int				i;
 
 	if (!base || (len = ft_strlen(base)) < 2 || !line || !(*line))
 		return (-1);
 	i = 0;
-	if (nb < 0)
-	{
-		(*line)[0] = '-';
-		nb = -nb;
-		i++;
-	}
 	x = 1;
 	while (nb / x >= len)
 		x = len * x;

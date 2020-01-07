@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 16:09:49 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/03 12:43:00 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/07 12:43:37 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static int	ft_shift(char **line)
 		(*line)[i] = (*line)[i - 1];
 		i--;
 	}
+	(*line)[0] = '0';
 	return (1);
 }
 
@@ -73,17 +74,22 @@ static int	ft_put(t_arg *arg, int nb, char **line)
 {
 	int		len;
 	int		ret;
+	long	n;
 
+	n = nb;
 	len = ft_size(nb, arg);
 	if (!(*line = malloc(len + 1)))
 		return (-1);
-	ret = ft_itoa_base("0123456789", nb, line);
 	if (nb < 0)
-		(*line)[0] = '0';
+	{
+		ret = ft_itoa_base("0123456789", -n, line) + 1;
+		ft_shift(line);
+	}
+	else
+		ret = ft_itoa_base("0123456789", nb, line);
 	while (ret < len)
 	{
 		ft_shift(line);
-		(*line)[0] = '0';
 		ret++;
 	}
 	if (nb < 0)
@@ -95,10 +101,10 @@ static int	ft_put(t_arg *arg, int nb, char **line)
 
 int			ft_print_di(t_arg *arg, va_list ap)
 {
-	unsigned int	nb;
-	char			*line;
-	int				ret;
-	int				sp;
+	int		nb;
+	char	*line;
+	int		ret;
+	int		sp;
 
 	if (arg->s_length == 1)
 		arg->length = va_arg(ap, int);

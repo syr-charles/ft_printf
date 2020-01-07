@@ -6,7 +6,7 @@
 /*   By: cdana <cdana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 16:51:15 by cdana             #+#    #+#             */
-/*   Updated: 2020/01/03 12:31:11 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/07 12:06:00 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_blank(int nb)
 	return (i);
 }
 
-static int	ft_size(long long nb)
+static int	ft_size(unsigned long nb)
 {
 	int				i;
 	long long		x;
@@ -58,7 +58,7 @@ static int	ft_shift(char **line)
 	return (1);
 }
 
-static int	ft_put(long long nb, char **line)
+static int	ft_put(unsigned long nb, char **line)
 {
 	int		len;
 	int		ret;
@@ -73,17 +73,17 @@ static int	ft_put(long long nb, char **line)
 	(*line)[1] = 'x';
 	return (len);
 }
-
+#include <stdio.h>
 int			ft_print_p(t_arg *arg, va_list ap)
 {
-	long long		nb;
+	unsigned long	nb;
 	char			*line;
 	int				ret;
 	int				sp;
 
 	if (arg->s_length == 1)
 		arg->length = va_arg(ap, int);
-	nb = (unsigned long)va_arg(ap, void *);
+	nb = (unsigned long)va_arg(ap, void *);	
 	if (arg->prec == 1 || arg->zero == 1)
 		return (-1);
 	if ((ret = ft_put(nb, &line)) == -1)
