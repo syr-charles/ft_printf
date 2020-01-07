@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2020/01/03 12:57:30 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/07 18:38:06 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int		ft_fill_width(const char *s, t_arg *arg, int i, va_list ap)
 	return (i);
 }
 
-static int		ft_fill_precision(const char *s, t_arg *arg, int i)
+static int		ft_fill_precision(const char *s, t_arg *arg, int i, va_list ap)
 {
 	arg->prec = 0;
 	arg->s_length = 0;
@@ -73,7 +73,7 @@ static int		ft_fill_precision(const char *s, t_arg *arg, int i)
 		i++;
 		if (s[i] == '*')
 		{
-			arg->s_length = 1;
+			arg->length = va_arg(ap, int);
 			i++;
 		}
 		else if (ft_find(s[i], "-0123456789"))
@@ -94,13 +94,13 @@ int				ft_fill_struct(const char *s, t_arg *arg, va_list ap)
 
 	i = ft_fill_flags(s, arg);
 	i = ft_fill_width(s, arg, i, ap);
-	i = ft_fill_precision(s, arg, i);
+	i = ft_fill_precision(s, arg, i, ap);
 	if (arg->zero == 1 && arg->minus == 1)
 		arg->zero = 0;
 	if (ft_find(s[i], "cspdiuxX%"))
 	{
 		arg->type = s[i];
-		if (arg->zero && arg->prec && ft_find(s[i], "spdiuxX"))
+		if (arg->zero && arg->prec && arg->length >= 0 && ft_find(s[i], "spdiuxX"))
 			arg->zero = 0;
 		return (i + 1);
 	}
