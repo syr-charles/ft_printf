@@ -6,7 +6,7 @@
 /*   By: charles <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 13:38:55 by charles           #+#    #+#             */
-/*   Updated: 2020/01/07 18:38:06 by cdana            ###   ########.fr       */
+/*   Updated: 2020/01/08 12:10:53 by cdana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ static int		ft_fill_precision(const char *s, t_arg *arg, int i, va_list ap)
 			arg->length = ft_atoi(s + i);
 			while (ft_find(s[i], "-0123456789"))
 				i++;
+			arg->min_width = (arg->length < 0) ? -arg->length : arg->min_width;
+			arg->minus = (arg->length < 0) ? 1 : arg->minus;
+			arg->length = (arg->length < 0) ? 0 : arg->length;
 		}
 		else
 			arg->length = 0;
@@ -100,7 +103,8 @@ int				ft_fill_struct(const char *s, t_arg *arg, va_list ap)
 	if (ft_find(s[i], "cspdiuxX%"))
 	{
 		arg->type = s[i];
-		if (arg->zero && arg->prec && arg->length >= 0 && ft_find(s[i], "spdiuxX"))
+		if (arg->zero && arg->prec && arg->length >= 0
+			&& ft_find(s[i], "spdiuxX"))
 			arg->zero = 0;
 		return (i + 1);
 	}
